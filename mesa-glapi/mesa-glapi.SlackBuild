@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=mesa-glapi
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_bbsb}
 
 # Upgrading may break things, make sure to stick with the Mesa version
@@ -72,31 +72,32 @@ find . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
-CFLAGS="$SLKCFLAGS" \
-CXXFLAGS="$SLKCFLAGS" \
-./configure \
-  --prefix=/usr \
-  --libdir=/usr/lib${LIBDIRSUFFIX} \
-  --build=$ARCH-slackware-linux \
-  --enable-shared-glapi
-
-make -C src/mapi/shared-glapi
-make -C src/mapi/shared-glapi install DESTDIR=$PKG
-
-if [ "$COMPAT32" = "yes" -a "$ARCH" = "x86_64" ]; then
-  SLKCFLAGS="-m32 -O2 -march=i486 -mtune=i686"
-  make -C src/mapi/shared-glapi clean
-
+build_glapi()
+{
   CFLAGS="$SLKCFLAGS" \
   CXXFLAGS="$SLKCFLAGS" \
   ./configure \
     --prefix=/usr \
-    --libdir=/usr/lib \
-    --build=i486-slackware-linux \
+    --libdir=/usr/lib${LIBDIRSUFFIX} \
+    --build=$ARCH-slackware-linux \
+    --with-dri-driverdir=/usr/lib${LIBDIRSUFFIX}/xorg/modules/dri \
+    --with-dri-drivers=i915,i965,nouveau,r200,radeon,swrast \
+    --with-gallium-drivers=nouveau,swrast,r300,r600 \
+    --enable-gallium-llvm \
     --enable-shared-glapi
 
   make -C src/mapi/shared-glapi
   make -C src/mapi/shared-glapi install DESTDIR=$PKG
+}
+
+build_glapi
+
+if [ "$COMPAT32" = "yes" -a "$ARCH" = "x86_64" ]; then
+  make -C src/mapi/shared-glapi clean
+
+  SLKCFLAGS="-m32 -O2 -march=i486 -mtune=i686" \
+  LIBDIRSUFFIX="" \
+  build_glapi
 fi
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
