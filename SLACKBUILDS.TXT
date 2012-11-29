@@ -38,6 +38,16 @@ SLACKBUILD MD5SUM: f61e60ff01381ece4d2fe65eeb52669e
 SLACKBUILD MD5SUM_x86_64: 
 SLACKBUILD SHORT DESCRIPTION:  libjpeg-turbo (accelerated libjpeg)
 
+SLACKBUILD NAME: mesa-glapi
+SLACKBUILD LOCATION: ./mesa-glapi
+SLACKBUILD FILES: mesa-glapi.SlackBuild mesa-glapi.info README slack-desc
+SLACKBUILD VERSION: 8.0.4
+SLACKBUILD DOWNLOAD: ftp://ftp.freedesktop.org/pub/mesa/8.0.4/MesaLib-8.0.4.tar.bz2
+SLACKBUILD DOWNLOAD_x86_64: 
+SLACKBUILD MD5SUM: d546f988adfdf986cff45b1efa2d8a46
+SLACKBUILD MD5SUM_x86_64: 
+SLACKBUILD SHORT DESCRIPTION:  mesa-glapi (Mesa GLAPI library)
+
 SLACKBUILD NAME: nvidia-bumblebee
 SLACKBUILD LOCATION: ./nvidia-bumblebee
 SLACKBUILD FILES: nvidia-bumblebee.SlackBuild nvidia-bumblebee.info README slack-desc

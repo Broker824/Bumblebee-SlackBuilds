@@ -1,0 +1,10 @@
+This package contains the Mesa GLAPI library that is needed for
+certain applications to satisfy their symbol dependencies.
+
+Do not upgrade this package version unless you know what you are doing.
+The version needs to be consistent with Slackware's Mesa version.
+
+This SlackBuild can build and package 32-bit compatible binaries and
+libraries for x86_64 systems. To enable this, pass the variable COMPAT32:
+
+  # COMPAT32=yes ./mesa-glapi.SlackBuild

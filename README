@@ -25,55 +25,67 @@ Note:
   http://alien.slackbook.org/dokuwiki/doku.php?id=slackware:multilib
 
 
-1.  Download the sources:
-     $ ./download.sh
+There are two step threes, you can either install VirtualGL, primus,
+or both.
 
-2.  Create group: bumblebee:
-     # groupadd bumblebee
+1. Download the sources:
+    $ ./download.sh
 
-    Add users to the group:
-     # usermod -G bumblebee -a USERNAME
+2. Create group: bumblebee:
+    # groupadd bumblebee
 
-    Note: you will need to re-login as the user for this to take effect
+   Add users to the group:
+    # usermod -G bumblebee -a USERNAME
 
-3.  Build and install: libjpeg-turbo
+   Note: you will need to re-login as the user for this to take effect
 
-    If the system is x86_64 based, 32-bit compatible binaries and
-    libraries can be installed via:
+3. Build and install: libjpeg-turbo
 
-     # COMPAT32=yes ./libjpeg-turbo.SlackBuild
+   If the system is x86_64 based, 32-bit compatible binaries and
+   libraries can be installed via:
 
-4.  Build and install: VirtualGL
+    # COMPAT32=yes ./libjpeg-turbo.SlackBuild
 
-    If the system is x86_64 based, 32-bit compatible binaries and
-    libraries can be installed via:
+   Build and install: VirtualGL
 
-     # COMPAT32=yes ./VirtualGL.SlackBuild
+   If the system is x86_64 based, 32-bit compatible binaries and
+   libraries can be installed via:
 
-5.  Build and install: primus (Optional)
+    # COMPAT32=yes ./VirtualGL.SlackBuild
 
-    This can be used in place of VirtualGL to achieve "better"
-    performance. Both can be installed at the same time.
+3. Build and install: mesa-glapi
 
-6.  Build and install: nvidia-bumblebee (Optional, if using nouveau)
+   If the system is x86_64 based, 32-bit compatible binaries and
+   libraries can be installed via:
 
-    If the system is x86_64 based, 32-bit compatible binaries and
-    libraries can be installed via:
+    # COMPAT32=yes ./mesa-glapi.SlackBuild
 
-     # COMPAT32=yes ./nvidia-bumblebee.SlackBuild
+   Build and install: primus
 
-7.  Build and install: nvidia-kernel (Optional, if using nouveau)
+   If the system is x86_64 based, 32-bit compatible binaries and
+   libraries can be installed via:
 
-8.  Build and install: bbswitch (Optional)
+    # COMPAT32=yes ./primus.SlackBuild
 
-    This in an optional requirement.  If you do not need power management or
-    the ability to turn off the nVidia chip, you can skip this.
+4. Build and install: nvidia-bumblebee (Optional, if using nouveau)
 
-9.  Build and install: libbsd
+   If the system is x86_64 based, 32-bit compatible binaries and
+   libraries can be installed via:
 
-10. Build and install: bumblebeed
+    # COMPAT32=yes ./nvidia-bumblebee.SlackBuild
 
-11. Run the rc.bumblebee script:
+5. Build and install: nvidia-kernel (Optional, if using nouveau)
+
+6. Build and install: bbswitch (Optional)
+
+   This in an optional requirement.  If you do not need power management or
+   the ability to turn off the nVidia chip, you can skip this.
+
+7. Build and install: libbsd
+
+8. Build and install: bumblebeed
+
+9. Run the rc.bumblebee script:
      # chmod +x /etc/rc.d/rc.bumblebeed
      # /etc/rc.d/rc.bumblebeed start
 
